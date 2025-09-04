@@ -1,121 +1,86 @@
+<script setup lang="ts">
+</script>
+
 <template>
-	<v-container>
-		<h2>
-			<v-icon icon="mdi-vuetify" />
-			Starter Template
-		</h2>
-		<h5>Nuxt 3 / Vuetify / Graphql / Pinia</h5>
-		<h3 class="my-5">
-			Example Pinia
-			<v-chip color="blue">useCounter</v-chip>
-		</h3>
-		<v-card class="mx-auto my-12" max-width="374">
-			<v-card-title class="text-blue">Pinia useCounter()</v-card-title>
-			<v-card-item>
-				<v-card-text>
-					<v-chip>count:</v-chip>
-					{{ store.count }}
-				</v-card-text>
-				<v-card-text>
-					<v-chip>doubleCount:</v-chip>
-					{{ store.doubleCount }}
-				</v-card-text>
-			</v-card-item>
-
-			<v-card-actions><v-btn color="blue" @click="store.increment()">Increment</v-btn></v-card-actions>
-		</v-card>
-
-		<h3 class="my-5">
-			Example Vuetify
-			<v-chip color="blue">Card</v-chip>
-		</h3>
-		<v-card class="mx-auto my-12" max-width="374">
-			<template #progress>
-				<v-progress-linear color="deep-purple" height="10" indeterminate />
-			</template>
-
-			<v-img height="250" src="https://cdn.vuetifyjs.com/images/cards/cooking.png" />
-
-			<v-card-title>Cafe Badilico</v-card-title>
-
-			<v-card-text>
-				<v-row align="center" class="mx-0">
-					<ClientOnly>
-						<v-rating :value="4.5" color="amber" dense half-increments readonly size="14" />
-						<div class="grey--text ms-4">4.5 (413)</div>
-					</ClientOnly>
-				</v-row>
-
-				<div class="my-4 text-subtitle-1">$ • Italian, Cafe</div>
-
+  <v-container fluid class="home-page pa-0">
+		<v-row align="center" justify="center">
+			<v-col cols="12" class="text-center">
+			<div class="hero-section d-flex flex-column align-center justify-center text-center">
+				<h1 class="text-h2 font-weight-bold mb-4">
+					Welcome to SpaceX Explorer
+				</h1>
+				<p class="text-subtitle-1 mb-6">
+					Discover missions, rockets, and the history of SpaceX launches.
+					Filter launches by year, explore rocket details, and save your favorites!
+				</p>
 				<div>
-					Small plates, salads & sandwiches - an intimate setting with 12 indoor seats plus patio
-					seating.
+					<v-btn to="/launches" color="primary" size="large" class="mx-2">
+					Explore Launches
+					</v-btn>
+					<v-btn to="/rockets" color="secondary" size="large" class="mx-2">
+					Explore Rockets
+					</v-btn>
 				</div>
-			</v-card-text>
+			</div>
+			</v-col>
+		</v-row>
 
-			<v-divider class="mx-4" />
+		<v-container class="py-12">
+			<v-row justify="center" class="text-center">
+				<v-col cols="12" md="4">
+					<v-card class="pa-6 hover-card" elevation="4">
+						<v-icon size="40" color="primary">mdi-rocket</v-icon>
+						<h3 class="text-h6 font-weight-bold mt-4">SpaceX Launches</h3>
+						<p class="text-body-2"> Browse past and upcoming missions, filter by year, and sort by launch date.</p>
+					</v-card>
+				</v-col>
 
-			<v-card-title>Tonight's availability</v-card-title>
+				<v-col cols="12" md="4">
+					<v-card class="pa-6 hover-card" elevation="4">
+						<v-icon size="40" color="secondary">mdi-space-station</v-icon>
+						<h3 class="text-h6 font-weight-bold mt-4">Rocket Details</h3>
+						<p class="text-body-2"> Dive deep into rocket specifications like mass, height, and first flight.</p>
+					</v-card>
+				</v-col>
 
-			<v-card-text>
-				<v-chip-group v-model="selection" active-class="deep-purple accent-4 white--text" column>
-					<v-chip>5:30PM</v-chip>
+				<v-col cols="12" md="4">
+					<v-card class="pa-6 hover-card" elevation="4">
+					<v-icon size="40" color="amber">mdi-star</v-icon>
+						<h3 class="text-h6 font-weight-bold mt-4">Favorites</h3>
+						<p class="text-body-2"> Save your favorite rockets and access them anytime from your favorites list.</p>
+					</v-card>
+				</v-col>
+			</v-row>
+		</v-container>
 
-					<v-chip>7:30PM</v-chip>
-
-					<v-chip>8:00PM</v-chip>
-
-					<v-chip>9:00PM</v-chip>
-				</v-chip-group>
-			</v-card-text>
-
-			<v-card-actions>
-				<v-btn color="deep-purple lighten-2">Reserve</v-btn>
-			</v-card-actions>
-		</v-card>
-		<h3 class="my-5">
-			Example Vuetify
-			<v-chip color="blue">SimpleTable</v-chip>
-			<v-chip color="orange">Data from spaceX graphql</v-chip>
-		</h3>
-		<p>There are {{ ships?.length || 0 }} ships.</p>
-		<v-table>
-			<thead>
-				<tr>
-					<th class="text-left">Name</th>
-					<th class="text-left">Active</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr v-for="ship in ships" :key="ship.name">
-					<td>{{ ship.name }}</td>
-					<td>
-						<v-chip :color="ship.active ? 'green' : 'red'">{{ ship.active }}</v-chip>
-					</td>
-				</tr>
-			</tbody>
-		</v-table>
+		<v-container class="py-12 text-center">
+			<h2 class="text-h4 font-weight-bold mb-4"> Start Exploring the SpaceX Universe Today</h2>
+			<v-btn to="/favorites" color="primary" size="large" class="mt-4"> View My Favorites</v-btn>
+		</v-container>
 	</v-container>
 </template>
-<script lang="ts" setup>
-const store = useCounter()
-const selection = ref(0)
-const query = gql`
-	query getShips {
-		ships {
-			id
-			name
-			active
-		}
-	}
-`
-const { data } = useAsyncQuery<{
-	ships: {
-		id: string
-		name: string
-		active: boolean
-	}[]
-}>(query)
-const ships = computed(() => data.value?.ships ?? [])
-</script>
+
+<style scoped>
+.hero-section {
+	width: 100%;
+	min-height: 70vh; 
+	background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia23/pia23645/jpeg/PIA23645.jpg?w=5230&h=5175&fit=clip&crop=faces%2Cfocalpoint");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	color: white;
+	padding: 4rem 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+.hover-card {
+  	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-card:hover {
+	transform: translateY(-8px);
+	box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+}
+</style>
